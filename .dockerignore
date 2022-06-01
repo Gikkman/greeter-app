@@ -1,0 +1,8 @@
+node_modules/
+kustomize/
+
+Dockerfile
+.dockerignore
+LICENSE
+*.md
+*.yaml

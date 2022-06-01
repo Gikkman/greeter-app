@@ -1,0 +1,26 @@
+apiVersion: skaffold/v2beta28
+kind: Config
+metadata:
+  name: greeter-app
+build:
+  artifacts:
+  - image: greeter-app
+    docker:
+      dockerfile: Dockerfile
+
+deploy:
+  kustomize:
+    paths:
+    - kustomize/base
+
+profiles:
+  - name: v1
+    deploy:
+      kustomize:
+        paths: 
+          - kustomize/overlays/v1
+  - name: v2
+    deploy:
+      kustomize:
+        paths: 
+          - kustomize/overlays/v2

@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+spec:
+  template:
+    spec:
+      containers:
+        - name: app
+          image: greeter-app
+          env:
+            - name: GREETING
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.labels['version']
+          resources:
+            requests:
+              memory: 32M
+              cpu: 5m
+            limits:
+              memory: 128M
+              cpu: 20m
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+              name: http
+          readinessProbe:
+            httpGet:
+              port: 8080
+              path: /health
