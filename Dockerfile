@@ -1,11 +1,13 @@
-FROM node:18
+FROM python:3.9
 
-WORKDIR /www
+# Create somewhere for the application to live.
+RUN mkdir -p /app
+WORKDIR /app
 
-COPY package*.json .
-RUN npm ci --quiet --silent --no-progress
+# Install the dependencies required to run the app.
+ADD requirements.txt /app
+RUN pip install -r requirements.txt
 
-COPY main.js .
-EXPOSE 8080
-
-CMD [ "node", "main.js" ]
+# Add the actual code itself and tell Docker what to run by default when the container is started.
+ADD main.py /app
+CMD ["python", "main.py"]

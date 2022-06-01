@@ -4,7 +4,7 @@ metadata:
   name: svc
 spec:
   ports:
-    - name: app
-      port: 8080
-      protocol: TCP
-      targetPort: http
+  - name: app
+    port: 8080
+    protocol: TCP
+    targetPort: http

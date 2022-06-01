@@ -1,8 +1,8 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-commonLabels:
-  version: v2
+commonAnnotations:
+  v: "2" 
 
 resources:
   - ../../base
